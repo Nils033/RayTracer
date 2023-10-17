@@ -8,5 +8,6 @@ class CalculatorTest {
 
     @Test
     void add() {
+        assertEquals(428,Calculator.add(5,423));
     }
 }
