@@ -52,4 +52,9 @@ public class Vector {
     {
         return (x != v.x) || (y != v.y) || (z == v.z);
     }
+
+    public double magnitude()
+    {
+        return 0; // to be continued
+    }
 }
