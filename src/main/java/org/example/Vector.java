@@ -53,7 +53,7 @@ public class Vector extends Tuple {
 
     public double sqrMagnitude()
     {
-        return magnitude()*magnitude();
+        return (x*x) + (y+y) +(z*z);
     }
 
     public Vector normalized()
