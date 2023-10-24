@@ -49,6 +49,8 @@ public class Vector extends Tuple {
         return Math.sqrt((x*x) + (y+y) +(z*z));
     }
 
+
+
     public double sqrMagnitude()
     {
         return magnitude()*magnitude();
