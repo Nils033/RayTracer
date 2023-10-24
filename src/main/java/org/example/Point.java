@@ -1,29 +1,9 @@
 package org.example;
 
-public class Point {
-    double x;
-    double y;
+public class Point extends Tuple{
 
-    public double getY() {
-        return y;
+
+    public Point(double x, double y, double z) {
+        super(x, y, z);
     }
-
-    public double getZ() {
-        return z;
-    }
-
-    double z;
-
-    public double getX() {
-        return x;
-    }
-
-    public Point(double x, double y)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-
 }

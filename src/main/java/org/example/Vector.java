@@ -1,16 +1,12 @@
 package org.example;
 
-public class Vector {
+public class Vector extends Tuple {
     double x,y,z;
 
-
-
-    public Vector(double x,double y,double z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public Vector(double x, double y, double z) {
+        super(x, y, z);
     }
+
 
     public void printVector()
     {
