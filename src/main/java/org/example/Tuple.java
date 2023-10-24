@@ -2,20 +2,14 @@ package org.example;
 
 public class Tuple {
 
-    double x,y,z;
+    protected double x,y,z,w;
 
 
-    public Tuple(double x, double y, double z) {
+    public Tuple(double x, double y, double z, double w) {
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    public void printTuple()
-    {
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(z);
+        this.w = w;
     }
 
 }

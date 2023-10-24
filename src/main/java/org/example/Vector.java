@@ -1,19 +1,14 @@
 package org.example;
 
 public class Vector extends Tuple {
-    double x,y,z;
+
 
     public Vector(double x, double y, double z) {
-        super(x, y, z);
+        super(x, y, z, 0);
     }
 
 
-    public void printVector()
-    {
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(z);
-    }
+
 
     public Vector add(Vector v)
     {
@@ -51,6 +46,6 @@ public class Vector extends Tuple {
 
     public double magnitude()
     {
-        return 0; // to be continued
+        return Math.sqrt((x*x) + (y+y) +(z*z));
     }
 }
