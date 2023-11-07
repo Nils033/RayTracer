@@ -10,6 +10,7 @@ public class Vector extends Tuple {
 
 
 
+
     public Vector add(Vector v)
     {
         return new Vector(x+v.x,y+v.y,z+v.z);

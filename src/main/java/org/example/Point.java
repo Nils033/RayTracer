@@ -7,6 +7,10 @@ public class Point extends Tuple{
         super(x, y, z, 1);
     }
 
+    public Vector subtract(Point p)
+    {
+        return new Vector(x-p.x,y-p.y,z-p.z);
+    }
     public Vector add(Point p)
     {
         return new Vector(x+p.x,y+p.y,z+p.z);

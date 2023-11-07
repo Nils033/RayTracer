@@ -80,4 +80,5 @@ public Color clamp()
     }
     return result;
 }
+
 }
