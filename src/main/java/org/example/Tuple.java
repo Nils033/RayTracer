@@ -18,6 +18,11 @@ public class Tuple {
         return false;
 
     }
+    @Override
+    public String toString()
+    {
+        return x + "|" + y + "|" + z;
+    }
 
 
     public Tuple(double x, double y, double z, double w) {
