@@ -31,4 +31,22 @@ public class Point extends Tuple{
     {
         return new Point(x-v.x,y-v.y,z-v.z);
     }
+    public boolean equals(Point p)
+    {
+        return x == p.x && y == p.y && z == p.z;
+    }
+    public boolean unequals(Point p)
+    {
+        return x != p.x && y != p.y && z != p.z;
+    }
+
+    public Point min(Point p)
+    {
+        return new Point(Math.min(x, p.x),Math.min(y,p.y),Math.min(z,p.z));
+    }
+
+    public Point max(Point p)
+    {
+        return new Point(Math.max(x, p.x),Math.max(y,p.y),Math.max(z,p.z));
+    }
 }
