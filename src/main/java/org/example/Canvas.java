@@ -35,7 +35,7 @@ public class Canvas {
             for (int j = 0; j< width; j++)
             {
                 Color c = new Color((double) i /height, (double) j /width, (double) i /j);
-                setPixel(i,j,c.toDEC());
+                setPixel(j,i,c.toDEC());
             }
         }
     }
@@ -47,7 +47,7 @@ public class Canvas {
             for (int j = 0; j< width; j++)
             {
                 Color c = new Color((double) i, (double) j, (double) 0);
-                setPixel(i,j,c.toDEC());
+                setPixel(j,i,c.toDEC());
             }
         }
     }
