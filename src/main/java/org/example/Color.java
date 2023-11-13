@@ -4,7 +4,6 @@ public class Color {
 protected double r = 0;
 protected double g = 0;
 protected double b = 0;
-
     public Color(double r, double g, double b) {
         this.r = r;
         this.g = g;
@@ -19,12 +18,12 @@ protected double b = 0;
         switch (name){
             case "black": r = 0; g = 0; b = 0; break;
             case "red": r = 1; g = 0; b = 0; break;
-            case "yellow": r = 1; g = 1; b = 0;; break;
-            case "white": r = 1; g = 1; b = 1;; break;
-            case "green": r = 0; g = 1; b = 0;; break;
-            case "magenta": r = 1; g = 0; b = 1;; break;
-            case "cyan": r = 0; g = 1; b = 1;; break;
-            case "blue": r = 0; g = 0; b = 1;; break;
+            case "yellow": r = 1; g = 1; b = 0; break;
+            case "white": r = 1; g = 1; b = 1; break;
+            case "green": r = 0; g = 1; b = 0; break;
+            case "magenta": r = 1; g = 0; b = 1; break;
+            case "cyan": r = 0; g = 1; b = 1; break;
+            case "blue": r = 0; g = 0; b = 1; break;
             default: new Color();
 
         }
@@ -79,6 +78,15 @@ public Color clamp()
         result.b = 0;
     }
     return result;
+}
+
+public int toDEC()
+{
+    int rInt = (int) (r*(255<<16));
+    int gInt = (int) (g*(255<<8));
+    int bInt = (int) (b*(255));
+
+    return rInt+gInt+bInt;
 }
 
 }

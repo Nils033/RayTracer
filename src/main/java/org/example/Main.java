@@ -5,7 +5,8 @@ public class Main {
         System.out.println("Hello world!");
         Vector a = new Vector(1,1,1);
         System.out.println(a);
-        Color c = new Color("red");
+        Color c = new Color("cyan");
+        System.out.println(c.toDEC());
         System.out.println(c);
     }
 }
