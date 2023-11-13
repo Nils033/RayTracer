@@ -1,12 +1,13 @@
 package org.example;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-        Vector a = new Vector(1,1,1);
-        System.out.println(a);
-        Color c = new Color("cyan");
-        System.out.println(c.toDEC());
-        System.out.println(c);
+    public static void main(String[] args) throws IOException {
+        Canvas Manfred = new Canvas(200,100,"test");
+        Manfred.ExampleImage2();
+        File outputfile = new File("test.png");
+        Manfred.writeImage(outputfile);
     }
 }
