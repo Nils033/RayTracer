@@ -28,19 +28,19 @@ public class Canvas {
         image.setRGB(x,y,rgbColor);
     }
 
-    public void ExampleImage1()
+    public void exampleImage1()
     {
         for (int i = 0; i < height; i++)
         {
-            for (int j = 0; j< width; j++)
+            for (int j = 0; j < width; j++)
             {
-                Color c = new Color((double) i /height, (double) j /width, (double) i /j);
+                Color c = new Color((double) i /height, (double) j/width, 0);
                 setPixel(j,i,c.toDEC());
             }
         }
     }
 
-    public void ExampleImage2()
+    public void exampleImage2()
     {
         for (int i = 0; i < height; i++)
         {
@@ -51,6 +51,45 @@ public class Canvas {
             }
         }
     }
+    public void simpleColor(Color c)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x< width; x++)
+            {
+                setPixel(x,y, c.toDEC());
+            }
+        }
+    }
+    public void testImage1()
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x< width; x++)
+            {
+                Color c = new Color((double) x/height, (double) y/width, 0.0);
+                setPixel(x,y,c.toDEC());
+            }
+        }
+    }
+    public void testImage2()
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x< width; x++)
+            {
+                Point p = new Point(x,y,0);
+                Vector v = p.subtract(new Point((double) width /2, (double) height /2,-100));
+                double distance = (v.magnitude()-99)/10;
+                System.out.println(distance);
+                Color c = new Color(distance, distance, distance);
+                setPixel(x,y,c.toDEC());
+            }
+        }
+    }
+
+
+
 
 
 

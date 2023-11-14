@@ -1,9 +1,9 @@
 package org.example;
 
 public class Color {
-protected double r = 0;
-protected double g = 0;
-protected double b = 0;
+protected double r = 0.0;
+protected double g = 0.0;
+protected double b = 0.0;
     public Color(double r, double g, double b) {
         this.r = r;
         this.g = g;
@@ -82,11 +82,12 @@ public Color clamp()
 
 public int toDEC()
 {
-    int rInt = (int) (r*(255<<16));
-    int gInt = (int) (g*(255<<8));
-    int bInt = (int) (b*(255));
-
-    return rInt+gInt+bInt;
+    int rInt = ((int)(r*255))<<16;
+    int gInt = ((int)(g*255))<<8;
+    int bInt = ((int)(b*255));
+    return (rInt+gInt+bInt);
 }
+
+
 
 }
