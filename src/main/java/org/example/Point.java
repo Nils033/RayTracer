@@ -53,4 +53,5 @@ public class Point extends Tuple{
     {
         return new Point(Math.max(x, p.x),Math.max(y,p.y),Math.max(z,p.z));
     }
+
 }

@@ -32,4 +32,9 @@ public class Tuple {
         this.w = w;
     }
 
+    public double[] toArray()
+    {
+        return new double[]{x,y,z};
+    }
+
 }

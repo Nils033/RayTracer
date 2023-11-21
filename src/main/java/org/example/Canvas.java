@@ -18,6 +18,14 @@ public class Canvas {
         File outputfile = new File(fileName +".png");
         image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
     }
+    public Canvas(Resolution r, String fileName)
+    {
+        this.width = r.width;
+        this.height = r.height;
+        this.fileName=fileName;
+        File outputfile = new File(fileName +".png");
+        image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    }
 
     public void writeImage(File outputfile) throws IOException {
         ImageIO.write((RenderedImage) image,"png",outputfile);
@@ -34,7 +42,7 @@ public class Canvas {
         {
             for (int j = 0; j < width; j++)
             {
-                Color c = new Color((double) i /height, (double) j/width, 0);
+                Color c = new Color((double) i /height, (double) j/width, (double) j /width);
                 setPixel(j,i,c.toDEC());
             }
         }
@@ -46,7 +54,7 @@ public class Canvas {
         {
             for (int j = 0; j< width; j++)
             {
-                Color c = new Color((double) i, (double) j, (double) 0);
+                Color c = new Color((double) i, (double) j, (double) i-j);
                 setPixel(j,i,c.toDEC());
             }
         }
@@ -80,8 +88,7 @@ public class Canvas {
             {
                 Point p = new Point(x,y,0);
                 Vector v = p.subtract(new Point((double) width /2, (double) height /2,-100));
-                double distance = (v.magnitude()-99)/10;
-                System.out.println(distance);
+                double distance = (v.magnitude()-99)/100;
                 Color c = new Color(distance, distance, distance);
                 setPixel(x,y,c.toDEC());
             }
