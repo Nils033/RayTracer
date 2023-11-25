@@ -4,6 +4,7 @@ public class Matrix {
 
     // double [y][x]
     protected double[][] value;
+    Matrix inverted;
 
     {
         value = new double[4][4];
@@ -33,8 +34,40 @@ public class Matrix {
     }
     public void setValue(int x, int y, double value) {
         this.value[y][x] = value;
+        inverted = null;
     }
-
+    @Override
+    public boolean equals(Object obj) {
+        double e = 0.00001;
+        if(obj instanceof Matrix other) {
+            if(this.value.length != other.value.length || this.value[0].length != other.value[0].length) {
+                return false;
+            }else
+            {
+                for(int row = 0; row < value[0].length; row++){
+                    for(int col = 0; col < value.length; col++){
+                        if(Math.abs(this.value[row][col] - other.value[row][col]) > e)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    public Matrix multiplyScalar(double s)
+    {
+        double[][] result = new double[value.length][value.length];
+        for (int i = 0; i<value.length; i++)
+        {
+            for (int j= 0; j<value.length;j++)
+            {
+                result[i][j] = value[i][j]*s;
+            }
+        }
+        return new Matrix(result);
+    }
     public Matrix multiplyTuple(double[] tuple)
     {
         double[][] result = new double[value.length][value.length];
@@ -45,6 +78,27 @@ public class Matrix {
                 value[i][j] = value[i][j]*tuple[i];
             }
         }
+        inverted = null;
+        return new Matrix(result);
+    }
+
+    public Matrix multiplyMatrix(Matrix m) throws Exception {
+        if(value.length != m.value[0].length)
+        {
+            throw new Exception("Multiplikation nicht möglich - Zeilen und Spalten Verhältnis stimmt nicht über ein.");
+        }
+        double[][] result = new double[value.length][m.value[0].length];
+        for (int k = 0; k<value.length; k++)
+        {
+            for (int i= 0; i<m.value[0].length;i++)
+            {
+                for (int j = 0; j<value.length; j++)
+                {
+                    result[i][k] += value[i][j]*m.value[j][k];
+                }
+            }
+        }
+        inverted = null;
         return new Matrix(result);
     }
 
@@ -127,6 +181,37 @@ public class Matrix {
             }
         }
         return new Matrix(result);
+    }
+
+    public Matrix adjuncts()
+    {
+        double[][] result = new double[value.length][value.length];
+        for (int i = 0; i<value.length;i++)
+        {
+            for (int j = 0; j<value.length; j++)
+            {
+                int negative = 1;
+                if((i+j)%2 == 1)
+                {
+                    negative = -1;
+                }
+                result[j][i] = negative*minor(i,j).determinate();
+            }
+        }
+        return new Matrix(result);
+    }
+
+    public Matrix getInverted()
+    {
+        if (inverted == null)
+        {
+            inverted = adjuncts().multiplyScalar(1/determinate());
+        }else
+        {
+            return inverted;
+        }
+
+        return inverted;
     }
 
     public String toString()
