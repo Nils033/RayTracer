@@ -6,8 +6,9 @@ public class Matrix {
     protected double[][] value;
     Matrix inverted;
 
+    public static Matrix unitMatrix()
     {
-        value = new double[4][4];
+        return new Matrix(new double[][]{{1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1}});
     }
 
     public int getLength() {
@@ -17,15 +18,6 @@ public class Matrix {
     public Matrix(double[][] value)
     {
         this.value = value;
-    }
-
-    public Matrix(double x00, double x01, double x10, double x11)
-    {
-        value = new double[2][2];
-        value[0][0] = x00;
-        value[0][1] = x01;
-        value[1][0] = x10;
-        value[1][1] = x11;
     }
 
     public double getValue(int x, int y)
@@ -102,6 +94,7 @@ public class Matrix {
         return new Matrix(result);
     }
 
+
     public double determinate()
     {
         double result = 0;
@@ -112,38 +105,16 @@ public class Matrix {
         {
             for (int i = 0; i<value.length; i++)
             {
-                Matrix minor = new Matrix(new double[value.length-1][value.length-1]);
-                int l = 0;
-                int m = 0;
-                for (int j= 0; j<value.length;j++)
-                {
-                    if(j==0)
-                    {
-                        continue;
-                    }
-                    for (int k=0; k<value.length;k++)
-                    {
-                        if(k==i)
-                        {
-                            continue;
-                        }
-                        minor.value[m][l] = value[j][k];
-                        l++;
-                    }
-                    l=0;
-                    m++;
-                }
                 int negative = 1;
                 if((i+1)%2 == 0)
                 {
                     negative = -1;
                 }
-                result += negative*(value[0][i]*minor.determinate());
+                result += negative*(value[0][i]*minor(0,i).determinate());
             }
         }
         return result;
     }
-
     public Matrix minor(int y, int x)
     {
         Matrix minor = new Matrix(new double[value.length-1][value.length-1]);
@@ -201,8 +172,11 @@ public class Matrix {
         return new Matrix(result);
     }
 
-    public Matrix getInverted()
-    {
+    public Matrix getInverted() throws Exception {
+        if(determinate() == 0)
+        {
+            throw new Exception("Determinate = 0, Matrix nicht invertierbar");
+        }
         if (inverted == null)
         {
             inverted = adjuncts().multiplyScalar(1/determinate());
