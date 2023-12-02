@@ -6,7 +6,6 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         Canvas Manfred = new Canvas(Resolution.macbook(),"test");
-        Manfred.exampleImage2();
         File outputfile = new File("test.png");
         Manfred.writeImage(outputfile);
 

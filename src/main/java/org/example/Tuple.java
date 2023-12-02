@@ -7,7 +7,6 @@ public class Tuple {
     @Override
     public boolean equals(Object obj)
     {
-
         if(obj instanceof Tuple other)
         {
             return ((Math.abs(this.x - other.x) < e) &&

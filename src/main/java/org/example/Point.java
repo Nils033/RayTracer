@@ -26,7 +26,7 @@ public class Point extends Tuple{
         return new Point(x/s,y/s,z/s);
     }
 
-    public Point addVector(Vector v)
+    public Point add(Vector v)
     {
         return new Point(x+v.x,y+v.y,z+v.z);
     }

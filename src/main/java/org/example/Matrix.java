@@ -6,7 +6,7 @@ public class Matrix {
     protected double[][] value;
     Matrix inverted;
 
-    public static Matrix unitMatrix()
+    public static Matrix unit()
     {
         return new Matrix(new double[][]{{1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1}});
     }
@@ -48,7 +48,7 @@ public class Matrix {
         }
         return true;
     }
-    public Matrix multiplyScalar(double s)
+    public Matrix multiply(double s)
     {
         double[][] result = new double[value.length][value.length];
         for (int i = 0; i<value.length; i++)
@@ -60,7 +60,7 @@ public class Matrix {
         }
         return new Matrix(result);
     }
-    public Matrix multiplyTuple(double[] tuple)
+    public Matrix multiply(double[] tuple)
     {
         double[][] result = new double[value.length][value.length];
         for (int i = 0; i<value.length; i++)
@@ -74,7 +74,7 @@ public class Matrix {
         return new Matrix(result);
     }
 
-    public Matrix multiplyMatrix(Matrix m) throws Exception {
+    public Matrix multiply(Matrix m) throws Exception {
         if(value.length != m.value[0].length)
         {
             throw new Exception("Multiplikation nicht möglich - Zeilen und Spalten Verhältnis stimmt nicht über ein.");
@@ -179,7 +179,7 @@ public class Matrix {
         }
         if (inverted == null)
         {
-            inverted = adjuncts().multiplyScalar(1/determinate());
+            inverted = adjuncts().multiply(1/determinate());
         }else
         {
             return inverted;
