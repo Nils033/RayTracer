@@ -4,7 +4,7 @@ public class Sphere extends Shape {
     protected Point center = new Point(0,0,0);
     protected double radius = 1;
     @Override
-    public Intersections intersect(Ray ray) {
+    public Intersections intersect(Ray ray)
 {
     Intersections result = new Intersections(new Intersection[]{});
             // Vektor vom Ursprung des Strahls zum Mittelpunkt der Kugel
@@ -27,19 +27,20 @@ public class Sphere extends Shape {
 
                 // Überprüfe, ob der Schnittpunkt vor dem Ursprung des Strahls liegt
                 if (t > 0) {
-
+                    result.add(new Intersection(t,this));
                 }
 
                 t = (-b + Math.sqrt(discriminant)) / (2.0 * a);
 
-                // Überprüfe erneut für den anderen Schnittpunkt
-                return t > 0;
+                if (t > 0) {
+                    result.add(new Intersection(t,this));
+                }
             }
+        return result;
         }
-    }
 
     @Override
     public Vector normalAt(Point point) {
-        return null;
+        return point.subtract(center).normalized();
     }
 }
