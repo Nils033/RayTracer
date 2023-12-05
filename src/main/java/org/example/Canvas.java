@@ -97,17 +97,18 @@ public class Canvas {
 
     public void sphereImage1()
     {
-        Point c = new Point(width/2,height/2,0);
+        Point camera = new Point(0,0,-5);
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x< width; x++)
             {
-                Point p = new Point(x,y,-100);
-                Ray ray = new Ray(c,p);
+                Point p = new Point(x,y,0);
+                Ray ray = new Ray(camera,camera.subtract(p));
                 Sphere sphere = new Sphere();
 
-                if(sphere.intersect(ray) != null)
+                if(sphere.intersect(ray).count() > 0)
                 {
+                    System.out.println("Schnitt!");
                     setPixel(x,y,new Color(1,0,0).toDEC());
                 }
 

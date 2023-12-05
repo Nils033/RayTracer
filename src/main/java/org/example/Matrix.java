@@ -229,7 +229,6 @@ public class Matrix {
 
     public static Matrix rotateX(double angle)
     {
-        angle = Math.toRadians(angle);
         Matrix result = Matrix.unit();
         result.setValue(2,1, -Math.sin(angle));
         result.setValue(1,1, Math.cos(angle));
@@ -240,7 +239,6 @@ public class Matrix {
 
     public static Matrix rotateY(double angle)
     {
-        angle = Math.toRadians(angle);
         Matrix result = Matrix.unit();
         result.setValue(0,2, -Math.sin(angle));
         result.setValue(0,0, Math.cos(angle));
@@ -251,7 +249,7 @@ public class Matrix {
 
     public static Matrix rotateZ(double angle)
     {
-        angle = Math.toRadians(angle);
+
         Matrix result = Matrix.unit();
         result.setValue(1,0, -Math.sin(angle));
         result.setValue(0,0, Math.cos(angle));

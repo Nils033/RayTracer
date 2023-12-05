@@ -9,11 +9,11 @@ public class Sphere extends Shape {
 {
     Intersections result = new Intersections(new Intersection[]{});
             // Vektor vom Ursprung des Strahls zum Mittelpunkt der Kugel
-            Vector oc = center.subtract(ray.getOrigin());
+            Vector oc = ray.getOrigin().subtract(center);
 
             // Koeffizienten für die quadratische Gleichung
             double a = ray.getDirection().dot(ray.getDirection());
-            double b = 2.0 * oc.dot(ray.getDirection());
+            double b = 2.0 * ray.getDirection().dot(oc);
             double c = oc.dot(oc) - (radius * radius);
 
             // Diskriminante
@@ -21,21 +21,14 @@ public class Sphere extends Shape {
 
             // Wenn die Diskriminante negativ ist, gibt es keine Schnittstellen
             if (discriminant < 0) {
-                return null;
+                return result;
             } else {
                 // Berechne den Parameter t für den Schnittpunkt
-                double t = (-b - Math.sqrt(discriminant)) / (2.0 * a);
+                double t1 = (-b - Math.sqrt(discriminant)) / (2.0 * a);
+                double t2 = (-b + Math.sqrt(discriminant)) / (2.0 * a);
+                result.add(new Intersection(t1, this));
+                result.add(new Intersection(t2, this));
 
-                // Überprüfe, ob der Schnittpunkt vor dem Ursprung des Strahls liegt
-                if (t > 0) {
-                    result.add(new Intersection(t,this));
-                }
-
-                t = (-b + Math.sqrt(discriminant)) / (2.0 * a);
-
-                if (t < 0) {
-                    result.add(new Intersection(t,this));
-                }
             }
         return result;
         }
