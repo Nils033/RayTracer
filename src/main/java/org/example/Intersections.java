@@ -15,4 +15,9 @@ public class Intersections {
         intersections[intersections.length-1] = i;
     }
 
+    public int count()
+    {
+        return intersections.length;
+    }
+
 }

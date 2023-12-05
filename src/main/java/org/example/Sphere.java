@@ -20,7 +20,7 @@ public class Sphere extends Shape {
 
             // Wenn die Diskriminante negativ ist, gibt es keine Schnittstellen
             if (discriminant < 0) {
-                return result;
+                return null;
             } else {
                 // Berechne den Parameter t für den Schnittpunkt
                 double t = (-b - Math.sqrt(discriminant)) / (2.0 * a);

@@ -86,11 +86,31 @@ public class Canvas {
         {
             for (int x = 0; x< width; x++)
             {
-                Point p = new Point(x,y,0);
-                Vector v = p.subtract(new Point((double) width /2, (double) height /2,-100));
-                double distance = (v.magnitude()-99)/100;
+                Point p = new Point(x,y,-100);
+                Vector v = p.subtract(new Point((double) width /2, (double) height /2,0));
+                double distance = (v.magnitude()-100)/100;
                 Color c = new Color(distance, distance, distance);
                 setPixel(x,y,c.toDEC());
+            }
+        }
+    }
+
+    public void sphereImage1()
+    {
+        Point c = new Point(width/2,height/2,0);
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x< width; x++)
+            {
+                Point p = new Point(x,y,-100);
+                Ray ray = new Ray(c,p);
+                Sphere sphere = new Sphere();
+
+                if(sphere.intersect(ray) != null)
+                {
+                    setPixel(x,y,new Color(1,0,0).toDEC());
+                }
+
             }
         }
     }
