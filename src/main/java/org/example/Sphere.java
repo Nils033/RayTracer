@@ -3,6 +3,7 @@ package org.example;
 public class Sphere extends Shape {
     protected Point center = new Point(0,0,0);
     protected double radius = 1;
+
     @Override
     public Intersections intersect(Ray ray)
 {
@@ -16,7 +17,7 @@ public class Sphere extends Shape {
             double c = oc.dot(oc) - (radius * radius);
 
             // Diskriminante
-            double discriminant = b * b - 4 * a * c;
+            double discriminant = (b * b) - (4 * a * c);
 
             // Wenn die Diskriminante negativ ist, gibt es keine Schnittstellen
             if (discriminant < 0) {
@@ -32,7 +33,7 @@ public class Sphere extends Shape {
 
                 t = (-b + Math.sqrt(discriminant)) / (2.0 * a);
 
-                if (t > 0) {
+                if (t < 0) {
                     result.add(new Intersection(t,this));
                 }
             }

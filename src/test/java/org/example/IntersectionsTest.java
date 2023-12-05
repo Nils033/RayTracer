@@ -10,8 +10,8 @@ class IntersectionsTest {
     void add() {
         Ray ray = new Ray(new Point(0,0,-5),new Vector(0,0,1));
         Sphere sphere = new Sphere();
-        Intersections xs;
-        assertEquals(2,sphere.intersect(ray).count());
+        Intersections xs = sphere.intersect(ray);
+        assertEquals(2,xs.count());
     }
 
     @Test

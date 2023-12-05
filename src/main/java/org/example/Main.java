@@ -9,6 +9,10 @@ public class Main {
         File outputfile = new File("test.png");
         Manfred.testImage2();
         Manfred.writeImage(outputfile);
+        System.out.println(Matrix.rotateY(90));
+        Intersections m = new Intersections(new Intersection[]{});
+        m.add(new Intersection(3, new Sphere()));
+        System.out.println(m.count());
 
 
     }

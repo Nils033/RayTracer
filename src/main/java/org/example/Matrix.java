@@ -60,38 +60,45 @@ public class Matrix {
         }
         return new Matrix(result);
     }
-    public Matrix multiply(double[] tuple)
+
+    public Vector multiply(Vector v)
     {
-        double[][] result = new double[value.length][value.length];
+        double[] result = new double[value.length];
         for (int i = 0; i<value.length; i++)
         {
             for (int j= 0; j<value.length;j++)
             {
-                value[i][j] = value[i][j]*tuple[i];
+                double s = switch (j) {
+                    case (0) -> v.x;
+                    case (1) -> v.y;
+                    case (2) -> v.z;
+                    case (3) -> 0;
+                    default -> 0;
+                };
+                result[i] += value[i][j]*s;
             }
         }
-        inverted = null;
-        return new Matrix(result);
+        return new Vector(result[0],result[1],result[2]);
     }
 
-    public Matrix multiply(Matrix m) throws Exception {
-        if(value.length != m.value[0].length)
+    public Point multiply(Point p)
+    {
+        double[] result = new double[value.length];
+        for (int i = 0; i<value.length; i++)
         {
-            throw new Exception("Multiplikation nicht möglich - Zeilen und Spalten Verhältnis stimmt nicht über ein.");
-        }
-        double[][] result = new double[value.length][m.value[0].length];
-        for (int k = 0; k<value.length; k++)
-        {
-            for (int i= 0; i<m.value[0].length;i++)
+            for (int j= 0; j<value.length;j++)
             {
-                for (int j = 0; j<value.length; j++)
-                {
-                    result[i][k] += value[i][j]*m.value[j][k];
-                }
+                double s = switch (j) {
+                    case (0) -> p.x;
+                    case (1) -> p.y;
+                    case (2) -> p.z;
+                    case (3) -> 0;
+                    default -> 0;
+                };
+                result[i] += value[i][j]*s;
             }
         }
-        inverted = null;
-        return new Matrix(result);
+        return new Point(result[0],result[1],result[2]);
     }
 
 
@@ -201,5 +208,57 @@ public class Matrix {
         }
         return result;
     }
+
+    public static Matrix translation(double x, double y, double z)
+    {
+        Matrix result = Matrix.unit();
+        result.setValue(3,0, x);
+        result.setValue(3,1, y);
+        result.setValue(3,2, z);
+        return result;
+    }
+
+    public static Matrix scale(double x,double y, double z)
+    {
+        Matrix result = Matrix.unit();
+        result.setValue(0,0, x);
+        result.setValue(1,1, y);
+        result.setValue(2,2, z);
+        return result;
+    }
+
+    public static Matrix rotateX(double angle)
+    {
+        angle = Math.toRadians(angle);
+        Matrix result = Matrix.unit();
+        result.setValue(2,1, -Math.sin(angle));
+        result.setValue(1,1, Math.cos(angle));
+        result.setValue(1,2, Math.sin(angle));
+        result.setValue(2,2,Math.cos(angle));
+        return result;
+    }
+
+    public static Matrix rotateY(double angle)
+    {
+        angle = Math.toRadians(angle);
+        Matrix result = Matrix.unit();
+        result.setValue(0,2, -Math.sin(angle));
+        result.setValue(0,0, Math.cos(angle));
+        result.setValue(2,0, Math.sin(angle));
+        result.setValue(2,2,Math.cos(angle));
+        return result;
+    }
+
+    public static Matrix rotateZ(double angle)
+    {
+        angle = Math.toRadians(angle);
+        Matrix result = Matrix.unit();
+        result.setValue(1,0, -Math.sin(angle));
+        result.setValue(0,0, Math.cos(angle));
+        result.setValue(0,1, Math.sin(angle));
+        result.setValue(1,1,Math.cos(angle));
+        return result;
+    }
+
 
 }
