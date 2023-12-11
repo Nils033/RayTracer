@@ -3,6 +3,29 @@ package org.example;
 public class Sphere extends Shape {
     protected Point center = new Point(0,0,0);
     protected double radius = 1;
+    protected double t1;
+    protected double t2;
+
+    public Sphere(double radius)
+    {
+        this.radius = radius;
+    }
+
+    public double getT1() {
+        return t1;
+    }
+
+    public double getT2()
+    {
+        return t2;
+    }
+
+    public double getTMinimum()
+    {
+        return Math.min(t1,t2);
+    }
+
+    public Sphere() {}
 
     @Override
     public Intersections intersect(Ray ray)
@@ -24,8 +47,8 @@ public class Sphere extends Shape {
                 return result;
             } else {
                 // Berechne den Parameter t für den Schnittpunkt
-                double t1 = (-b - Math.sqrt(discriminant)) / (2.0 * a);
-                double t2 = (-b + Math.sqrt(discriminant)) / (2.0 * a);
+                t1 = (-b - Math.sqrt(discriminant)) / (2.0 * a);
+                t2 = (-b + Math.sqrt(discriminant)) / (2.0 * a);
                 result.add(new Intersection(t1, this));
                 result.add(new Intersection(t2, this));
 

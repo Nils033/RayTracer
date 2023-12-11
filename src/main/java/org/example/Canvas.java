@@ -95,30 +95,82 @@ public class Canvas {
         }
     }
 
-    public void sphereImage1()
+    /*public void sphereImage1()
     {
-        Point camera = new Point(0,0,-5);
+        Point camera = new Point(0, 0,-5);
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x< width; x++)
             {
-                Point p = new Point(x,y,0);
+                Point p = new Point((double) x-((double) width /2), (double) y-((double) height /2),0);
                 Ray ray = new Ray(camera,camera.subtract(p));
-                Sphere sphere = new Sphere();
+                Sphere sphere = new Sphere(10);
 
                 if(sphere.intersect(ray).count() > 0)
                 {
-                    System.out.println("Schnitt!");
+                    /*System.out.println("Schnitt!");
+
+
                     setPixel(x,y,new Color(1,0,0).toDEC());
                 }
 
             }
         }
+
+
     }
 
+     */
 
 
+    public void sphereImage1()
+    {
+        Point camera = new Point(0, 0,-5);
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x< width; x++)
+            {
+                Point p = new Point(((double) x-((double) width /2))/((double)width/3), ((double) y-((double) height /2))/((double)height/3),0);
+                Ray ray = new Ray(camera,camera.subtract(p));
+                Sphere sphere = new Sphere(1);//geht nur bis 4 ab 5 ganzes Bild ausgefüllt
 
+                if(sphere.intersect(ray).count() > 0)
+                {
+                    /*System.out.println("Schnitt!");
+
+                     */
+                    setPixel(x,y,new Color((double)x/width,(double)y/height,0).toDEC());
+                }
+                else
+                {
+                    setPixel(x,y,new Color(0,0,1).toDEC());
+                }
+
+            }
+        }
+
+
+    }
+    public void sphereImage2() {
+        Point camera = new Point(0, 0, -10);
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                Point p = new Point(((double) x - ((double) width / 2)) *0.01, ((double) y - ((double) height / 2))*0.01, 0);
+                Ray ray = new Ray(camera, camera.subtract(p));
+                Sphere sphere = new Sphere(1);//geht nur bis 4 ab 5 ganzes Bild ausgefüllt
+
+                if (sphere.intersect(ray).count() > 0) {
+                    /*System.out.println("Schnitt!");
+
+                     */
+                    setPixel(x, y, new Color((double) x / width, (double) y / height, 0).toDEC());
+                }
+
+            }
+        }
+
+
+    }
 
 
 }
