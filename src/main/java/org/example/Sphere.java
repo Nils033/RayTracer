@@ -3,12 +3,18 @@ package org.example;
 public class Sphere extends Shape {
     protected Point center = new Point(0,0,0);
     protected double radius = 1;
+
     protected double t1;
     protected double t2;
 
     public Sphere(double radius)
     {
         this.radius = radius;
+    }
+    public Sphere(double radius, Matrix matrix)
+    {
+        this.radius = radius;
+        this.transform = matrix;
     }
 
     public double getT1() {

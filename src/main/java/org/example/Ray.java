@@ -14,6 +14,11 @@ public class Ray
         this.origin = from;
         this.direction = to.subtract(from).normalized();
     }
+
+    public Vector transform (Matrix m) throws Exception {
+        Matrix inverse = m.getInverted();
+        return inverse.multiply(direction);
+    }
     public Point pointAt(double t)
     {
         return origin.add(direction.scalarMultiply(t));

@@ -4,7 +4,7 @@ public class Matrix {
 
     // double [y][x]
     protected double[][] value;
-    Matrix inverted;
+    private Matrix inverted;
 
     public static Matrix unit()
     {
